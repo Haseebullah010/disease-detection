@@ -45,6 +45,9 @@ class ReceiveImages(APIView):
             # getting results
             results = model(filepath)
             print ("results",results)
+
+            if len(results)==0:
+                print ("no item detetcted")
             # for croping
 
             _, result_dir = results.crop(save=True)
@@ -52,6 +55,8 @@ class ReceiveImages(APIView):
             # converting detection result to json format
             data = results.pandas().xyxy[0].to_json(orient="records")
             print ("data",data)
+            print ("length",len(data))
+            
 
             # normalizing result_dir
             tmp = finders.find(result_dir)
@@ -74,6 +79,7 @@ class ReceiveImages(APIView):
                 print ("no item detetcted")
                 
                 return render(request,"home.html",{'context1':"NO desease detected"})
+                
 
             unique_fruits = {}
             for fruit in data:
