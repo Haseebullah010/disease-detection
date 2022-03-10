@@ -69,6 +69,11 @@ class ReceiveImages(APIView):
 
             data = json.loads(data)
             print ("data",data)
+            
+            if len(data)==0:
+                print ("no item detetcted")
+                
+                return render(request,"home.html",{'context1':"NO desease detected"})
 
             unique_fruits = {}
             for fruit in data:
