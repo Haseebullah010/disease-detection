@@ -5,7 +5,6 @@ Image Detection Backend
 # Bulit with
 
 - Django
-- DRF
 - Yolov5
 
 # How to use
